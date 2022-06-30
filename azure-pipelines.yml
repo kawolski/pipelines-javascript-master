@@ -29,13 +29,20 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/ZIP/package.zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1    
+- task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/ZIP'
+    ArtifactName: 'drop'
+    # publishLocation: 'Container'
+
+# - task: PublishBuildArtifacts@1    
+#   displayName: 'Publish Artifact: drop'
+#   inputs:
+#     PathtoPublish: '$(build.artifactstagingdirectory)'
     # StoreAsTar: true
 
 # - task: PublishBuildArtifacts@1
