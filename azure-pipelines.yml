@@ -36,7 +36,7 @@ steps:
   displayName: 'Publish Artifact: drop'
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
-    StoreAsTar: true
+    # StoreAsTar: true
 
 # - task: PublishBuildArtifacts@1
 #   inputs:
