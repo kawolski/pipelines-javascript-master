@@ -22,10 +22,12 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    targetFolder: '$(Build.ArtifactStagingDirectory)' 
+    # targetFolder: '$(Build.ArtifactStagingDirectory)'
+    targetFolder: 'copy_target_folder'
 
 - task: PublishBuildArtifacts@1    
   displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    # PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: 'copy_target_folder'
     StoreAsTar: true
