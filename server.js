@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 3000;
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Hello Node.js Sample!\n This is a newer version of NodeJS App.');
+  res.send('Anshuman nahi... Awward anshooman bolne ka tha na');
 });
 
 // var port = process.env.PORT||PORT;
