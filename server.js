@@ -23,7 +23,7 @@ const express = require('express');
 
 // Constants
 // const PORT = 80;
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 // const HOST = '0.0.0.0';
 
 // App
