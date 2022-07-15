@@ -22,6 +22,7 @@ steps:
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'DeadPool_DeadPool_AYIA9Vdxl2V8vAVOkQkB'
+    cliProjectName: 'DeadPool'
     cliSources: '.'
 
 - script: |
