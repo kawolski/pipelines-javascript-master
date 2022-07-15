@@ -6,6 +6,7 @@
 trigger:
 - master
 
+
 pool:
   vmImage: ubuntu-latest
 
@@ -15,19 +16,34 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'DeadPool_DeadPool_AYIA9Vdxl2V8vAVOkQkB'
+    cliSources: '.'
+
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: AzureKeyVault@2
+# - task: AzureKeyVault@2
+#   inputs:
+#     azureSubscription: 'EY'
+#     KeyVaultName: 'deadpool-vault'
+#     SecretsFilter: '*'
+#     RunAsPreJob: false
+# - task: CmdLine@2
+#   inputs:
+#     script: 'echo $(deadpoolsecret) > secret.txt'
+
+- task: SonarQubeAnalyze@5
+
+- task: SonarQubePublish@5
   inputs:
-    azureSubscription: 'EY'
-    KeyVaultName: 'deadpool-vault'
-    SecretsFilter: '*'
-    RunAsPreJob: false
-- task: CmdLine@2
-  inputs:
-    script: 'echo $(deadpoolsecret) > secret.txt'
+    pollingTimeoutSec: '300'
+
 - task: CopyFiles@2
   inputs:
     targetFolder: '$(Build.ArtifactStagingDirectory)'
@@ -39,11 +55,11 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/ZIP/package.zip'
     replaceExistingArchive: true
-- task: CopyFiles@2
-  inputs:
-    Contents: secret.txt
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copying Keys'
+# - task: CopyFiles@2
+#   inputs:
+#     Contents: secret.txt
+#     targetFolder: '$(Build.ArtifactStagingDirectory)'
+#   displayName: 'Copying Keys'
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
